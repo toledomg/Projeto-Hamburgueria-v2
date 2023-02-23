@@ -4,6 +4,7 @@ import RegisterPage from './pages/RegisterPage';
 import ShopPage from './pages/ShopPage';
 
 const Router = () => {
+  console.log('aqui');
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
