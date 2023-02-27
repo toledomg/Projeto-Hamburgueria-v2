@@ -8,12 +8,7 @@ declare module '*.jpg' {
   export default value;
 }
 
-// declare module '*.svg' {
-//   const value: string;
-//   export default value;
-// }
-
 declare module '*.svg' {
-  const value: React.FunctionComponent<React.SVGAttributes<SVGAElement>>;
+  const value: string;
   export default value;
 }

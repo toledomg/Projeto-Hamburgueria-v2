@@ -3,8 +3,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ShopPage from './pages/ShopPage';
 
-const Router = () => {
-  console.log('aqui');
+export function Router() {
   return (
     <Routes>
       <Route path='/' element={<LoginPage />} />
@@ -12,6 +11,4 @@ const Router = () => {
       <Route path='/shop' element={<ShopPage />} />
     </Routes>
   );
-};
-
-export default Router;
+}
