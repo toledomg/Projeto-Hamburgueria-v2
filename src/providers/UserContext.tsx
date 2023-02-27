@@ -44,6 +44,15 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
+  const autoLogin = async () => {
+    const token = localStorage.getItem('@token');
+    if (token) {
+      navigate('/shop');
+    } else {
+      navigate('/');
+    }
+  };
+
   const userLogin = async (formData: ILoginFormValues) => {
     try {
       setLoading(true);
@@ -131,6 +140,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         setProductsList,
         filteredProducts,
         setFilteredProducts,
+        autoLogin,
       }}
     >
       {children}

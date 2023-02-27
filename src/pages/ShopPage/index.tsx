@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { StyledShopPage } from './style';
 import CartModal from '../../components/CartModal';
 import Header from '../../components/Header';
@@ -8,7 +9,8 @@ import { StyledContainer } from '../../styles/grid';
 import { UserContext } from '../../providers/UserContext';
 
 const ShopPage = () => {
-  const { getAllProduct, productsList } = useContext(UserContext);
+  const { getAllProduct, productsList, autoLogin, navigate } =
+    useContext(UserContext);
 
   useEffect(() => {
     (() => {
@@ -16,7 +18,14 @@ const ShopPage = () => {
     })();
   }, [productsList]);
 
-  // console.log(productList);
+  useEffect(() => {
+    const token = localStorage.getItem('@token');
+    if (token) {
+      navigate('/shop');
+    } else {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <StyledShopPage>
