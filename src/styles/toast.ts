@@ -1,13 +1,18 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Swal from 'sweetalert2';
 
-export function toastAlert(title, text) {
+declare type ToastType = 'warning' | 'error' | 'success' | 'info' | 'question';
+
+export function toastAlert(title: ToastType, text: string) {
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
-    didOpen: (toast) => {
+    didOpen: (toast: {
+      addEventListener: (arg0: string, arg1: any) => void;
+    }) => {
       toast.addEventListener('mouseenter', Swal.stopTimer);
       toast.addEventListener('mouseleave', Swal.resumeTimer);
     },
@@ -19,8 +24,8 @@ export function toastAlert(title, text) {
   });
 }
 
-export function toasts(title, text) {
-  let timerInterval;
+export function toasts(title: ToastType, text: string) {
+  let timerInterval: number | undefined;
   Swal.fire({
     icon: title,
     html: text,
@@ -33,7 +38,7 @@ export function toasts(title, text) {
 }
 
 export function toastSuccess() {
-  let timerInterval;
+  let timerInterval: number | undefined;
   Swal.fire({
     icon: 'success',
     html: 'Usuário logado!',
@@ -46,7 +51,7 @@ export function toastSuccess() {
 }
 
 export function toastWarning() {
-  let timerInterval;
+  let timerInterval: number | undefined;
   Swal.fire({
     icon: 'warning',
     html: 'Atenção, dados incorretos!',
@@ -59,7 +64,7 @@ export function toastWarning() {
 }
 
 export function toastError() {
-  let timerInterval;
+  let timerInterval: number | undefined;
   Swal.fire({
     icon: 'error',
     html: 'Algo deu Errado!',
