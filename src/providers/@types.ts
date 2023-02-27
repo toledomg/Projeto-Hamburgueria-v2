@@ -28,10 +28,12 @@ export interface IProduct {
 }
 
 export interface IToast {
-  icon: string;
-  html: string;
-  timer?: number;
-  timerProgressBar?: boolean;
+  timeInterval: number;
+  html: string | HTMLElement | JQuery | undefined;
+  timer?: number | undefined;
+  timerProgressBar?: boolean | undefined;
+  willClose: HTMLElement;
+  clearInterval: number | undefined;
 }
 
 export interface IUserContext {
@@ -42,4 +44,9 @@ export interface IUserContext {
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   getAllProduct: () => Promise<void>;
   userLogout: () => void;
+  navigate: (to: string) => void;
+  productsList: IProduct[];
+  setProductsList: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  filteredProducts: IProduct[];
+  setFilteredProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
 }

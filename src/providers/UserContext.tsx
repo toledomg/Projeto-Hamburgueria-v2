@@ -90,7 +90,13 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const getAllProduct = async () => {
     try {
       const token = localStorage.getItem('@token');
-      const response = await api.get('/products');
+      const response = await api.get('/products', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // setProductsList(response.data);
+      // console.log(productsList);
 
       if (filteredProducts.length === 0) {
         setProductsList(response.data);
@@ -99,11 +105,13 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       }
     } catch (error) {
       console.log(error);
+      navigate('/');
     }
   };
 
   const userLogout = () => {
     setUser(null);
+    toastAlert('success', 'Deslogado');
     localStorage.removeItem('@token');
     navigate('/');
   };
@@ -119,6 +127,10 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         getAllProduct,
         userLogout,
         navigate,
+        productsList,
+        setProductsList,
+        filteredProducts,
+        setFilteredProducts,
       }}
     >
       {children}
