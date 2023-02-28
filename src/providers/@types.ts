@@ -20,11 +20,22 @@ export interface ILoginFormValues {
 }
 
 export interface IProduct {
+  some(arg0: (product: { id: number }) => boolean): unknown;
   id: number;
   name: string;
   category: string;
   price: number;
   img: string;
+}
+
+export interface IProductCart {
+  // some(arg0: (product: { id: number }) => boolean): unknown;
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  units?: number;
 }
 
 export interface IToast {
@@ -50,4 +61,20 @@ export interface IUserContext {
   filteredProducts: IProduct[];
   setFilteredProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
   autoLogin: () => Promise<void>;
+}
+
+export interface ICartContext {
+  isOpenModal: boolean;
+  setIsOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  localCart: string | null;
+  cartList: IProductCart[];
+  setCartList: React.Dispatch<React.SetStateAction<IProductCart[]>>;
+  search: IProduct[];
+  setSearch: React.Dispatch<React.SetStateAction<IProduct[]>>;
+  showModal: boolean;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  modalShow: () => void;
+  addToCart: (currentId: IProductCart) => void;
+  removeItemToCart: (currentId: IProductCart) => void;
+  removeAllToCart: (currentId: IProductCart) => void;
 }

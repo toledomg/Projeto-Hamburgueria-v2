@@ -24,6 +24,32 @@ export function toastAlert(title: ToastType, text: string) {
   });
 }
 
+export function toasts2(title: ToastType, text: string) {
+  Swal.fire({
+    position: 'top-end',
+    icon: title,
+    title: text,
+    showConfirmButton: false,
+    timer: 3000,
+  });
+}
+
+export function toastConfirm() {
+  Swal.fire({
+    title: 'Deseja excluir o item?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim',
+    cancelButtonText: 'Não',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire('Excluído!', 'Item Excluído com sucesso.', 'success');
+    }
+  });
+}
+
 export function toasts(title: ToastType, text: string) {
   let timerInterval: number | undefined;
   Swal.fire({

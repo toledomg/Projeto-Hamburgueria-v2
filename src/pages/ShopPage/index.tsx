@@ -16,7 +16,7 @@ const ShopPage = () => {
     (() => {
       getAllProduct();
     })();
-  }, [productsList]);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('@token');

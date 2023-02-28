@@ -1,29 +1,13 @@
 import { useContext } from 'react';
 import { StyledProductCard } from './style';
+import { CartContext } from '../../../providers/CartContext';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
 import { UserContext } from '../../../providers/UserContext';
-import { IProduct } from '../../../providers/@types';
+import { IProduct, IProductCart } from '../../../providers/@types';
 
-interface IProductCard {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  img: string;
-  product: IProduct;
-}
-
-const ProductCard = ({
-  id,
-  name,
-  category,
-  price,
-  img,
-  product,
-}: IProductCard) => {
-  const { loading } = useContext(UserContext);
-
+const ProductCard = ({ id, name, category, price, img }: IProductCart) => {
+  const { addToCart } = useContext(CartContext);
   return (
     <StyledProductCard>
       <div className='imageBox'>
@@ -37,7 +21,11 @@ const ProductCard = ({
         <StyledParagraph className='price'>
           {price.toFixed(2).replace('.', ',')}
         </StyledParagraph>
-        <StyledButton $buttonSize='medium' $buttonStyle='green'>
+        <StyledButton
+          $buttonSize='medium'
+          $buttonStyle='green'
+          // onClick={() => addToCart(id)}
+        >
           Adicionar
         </StyledButton>
       </div>
