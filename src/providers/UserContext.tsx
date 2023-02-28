@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+/* eslint-disable no-console */
+import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   IDefaultProviderProps,
@@ -7,6 +8,7 @@ import {
   ILoginFormValues,
   IRegisterFormValues,
   IUserContext,
+  IProductCart,
 } from './@types';
 
 import { toasts, toastError, toastWarning, toastAlert } from '../styles/toast';
@@ -22,30 +24,30 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
   const navigate = useNavigate();
 
-  const userLoad = async () => {
+  useEffect(() => {
     const token = localStorage.getItem('@token');
+    const idUser = localStorage.getItem('@useID');
+
     if (token) {
-      try {
-        const response = await api.post('/login');
+      const userAutoLogin = async () => {
+        try {
+          const response = await api.get(`/users/${idUser}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-        navigate('/shop');
-      } catch (error) {
-        console.log(error);
+          setUser(response.data.user);
+          navigate('/shop');
+        } catch (error) {
+          console.log(error);
+          navigate('/');
+        }
+      };
 
-        localStorage.removeItem('@token');
-        navigate('/');
-      }
+      userAutoLogin();
     }
-  };
-
-  const autoLogin = async () => {
-    const token = localStorage.getItem('@token');
-    if (token) {
-      navigate('/shop');
-    } else {
-      navigate('/');
-    }
-  };
+  }, []);
 
   const userLogin = async (formData: ILoginFormValues) => {
     try {
@@ -54,10 +56,10 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       const response = await api.post('/login', formData);
 
       localStorage.setItem('@token', response.data.accessToken);
-
+      localStorage.setItem('@useID', response.data.user.id);
+      setUser(response.data.user);
       navigate('/shop');
       toastAlert('success', 'Conectado com Sucesso');
-      // toastSuccess();
     } catch (error) {
       console.log(error);
 
@@ -95,6 +97,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
+
       if (filteredProducts.length === 0) {
         setProductsList(response.data);
       } else {
@@ -110,6 +113,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     setUser(null);
     toastAlert('success', 'Deslogado');
     localStorage.removeItem('@token');
+    localStorage.removeItem('@useID');
+    localStorage.removeItem('@HamburgerKenzie');
+
     navigate('/');
   };
 
@@ -128,7 +134,6 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         setProductsList,
         filteredProducts,
         setFilteredProducts,
-        autoLogin,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ import { UserContext } from '../../providers/UserContext';
 
 const ShopPage = () => {
   const { cartList } = useContext(CartContext);
-  const { getAllProduct, navigate } = useContext(UserContext);
+  const { getAllProduct } = useContext(UserContext);
 
   useEffect(() => {
     (() => {
@@ -20,15 +20,6 @@ const ShopPage = () => {
   useEffect(() => {
     localStorage.setItem('@HamburgerKenzie', JSON.stringify(cartList));
   }, [cartList]);
-
-  useEffect(() => {
-    const token = localStorage.getItem('@token');
-    if (token) {
-      navigate('/shop');
-    } else {
-      navigate('/');
-    }
-  }, []);
 
   return (
     <StyledShopPage>
