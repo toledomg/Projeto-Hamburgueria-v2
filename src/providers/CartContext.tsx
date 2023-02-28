@@ -26,7 +26,8 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
   const [cartList, setCartList] = useState<IProductCart[]>(
     localCart ? JSON.parse(localCart) : []
   );
-  const [search, setSearch] = useState<IProduct[]>();
+
+  const [search, setSearch] = useState<IProduct[]>([]);
 
   const [showModal, setShowModal] = useState(false);
   const modalShow = () => {
