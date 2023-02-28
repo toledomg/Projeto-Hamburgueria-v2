@@ -7,7 +7,7 @@ import { StyledButton } from '../../../styles/button';
 import { StyledParagraph } from '../../../styles/typography';
 
 const CartProductList = () => {
-  const { cartList } = useContext(CartContext);
+  const { cartList, removeAllToCart, soma } = useContext(CartContext);
   return (
     <StyledCartProductList>
       <ul>
@@ -25,9 +25,17 @@ const CartProductList = () => {
         <StyledParagraph>
           <strong>Total</strong>
         </StyledParagraph>
-        <StyledParagraph className='total'>R$ 14,00</StyledParagraph>
+        <StyledParagraph className='total'>
+          {' '}
+          R$
+          {soma.toFixed(2).replace('.', ',')}
+        </StyledParagraph>
       </div>
-      <StyledButton $buttonSize='default' $buttonStyle='gray'>
+      <StyledButton
+        $buttonSize='default'
+        $buttonStyle='gray'
+        onClick={() => removeAllToCart()}
+      >
         Remover todos
       </StyledButton>
     </StyledCartProductList>

@@ -83,5 +83,6 @@ export interface ICartContext {
   modalShow: () => void;
   addToCart: (currentProduct: IProductCart) => void;
   removeItemToCart: (currentId: IProductCart) => void;
-  removeAllToCart: (currentId: IProductCart) => void;
+  soma: number;
+  removeAllToCart: () => void;
 }

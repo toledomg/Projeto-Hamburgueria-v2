@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { MdClose } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import CartProductList from './CartProductList';
 
 import { StyledCartModalBox } from './style';
@@ -7,6 +8,7 @@ import { StyledParagraph, StyledTitle } from '../../styles/typography';
 
 const CartModal = () => {
   const [close, setClose] = useState(false);
+  const navigate = useNavigate;
 
   const toggleMenu = () => {
     setClose((current) => !current);

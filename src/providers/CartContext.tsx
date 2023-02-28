@@ -65,13 +65,21 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
           (product) => product.id !== currentProduct.id
         );
         setCartList(newCart);
-        console.log(cartList);
+
         Swal.fire('Excluído!', 'Item Excluído com sucesso.', 'success');
       }
     });
   };
 
-  const removeAllToCart = (currentProduct: IProductCart) => {
+  const soma = cartList.reduce(
+    (valorAnterior, valorAtual) =>
+      valorAtual.price
+        ? valorAnterior + Number(valorAtual.price)
+        : valorAnterior - Number(valorAtual.price),
+    0
+  );
+
+  const removeAllToCart = () => {
     const emptySale: SetStateAction<IProductCart[]> = [];
     Swal.fire({
       title: 'Deseja limpar todo seu carrinho?',
@@ -107,6 +115,7 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
         addToCart,
         removeItemToCart,
         removeAllToCart,
+        soma,
       }}
     >
       {children}

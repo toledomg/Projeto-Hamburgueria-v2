@@ -34,15 +34,15 @@ export const StyledHeader = styled.header`
         }
       }
       .cart_Counter {
-        background-color: var(--primary);
-        color: var(--white);
-        font-size: 12px;
-        font-weight: var(--strong);
-        border-radius: 2px;
+        background-color: #27ae60;
+        color: white;
+        font-size: 10px;
+        font-weight: 600;
+        border-radius: 11px;
         padding: 4px;
         position: relative;
-        bottom: 10px;
-        right: 30px;
+        bottom: 20px;
+        right: 10px;
       }
     }
 

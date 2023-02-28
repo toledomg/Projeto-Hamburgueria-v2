@@ -3,7 +3,6 @@ import { StyledProductCard } from './style';
 import { CartContext } from '../../../providers/CartContext';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
-import { UserContext } from '../../../providers/UserContext';
 import { IShopProduct } from '../../../providers/@types';
 
 const ProductCard = ({ product, name, category, price, img }: IShopProduct) => {
