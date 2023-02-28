@@ -23,8 +23,10 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
   const localCart = localStorage.getItem('@HamburgerKenzie');
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const [cartList, setCartList] = useState([] as IProductCart[]);
-  const [search, setSearch] = useState<IProduct[]>([]);
+  const [cartList, setCartList] = useState<IProductCart[]>(
+    localCart ? JSON.parse(localCart) : []
+  );
+  const [search, setSearch] = useState<IProduct[]>();
 
   const [showModal, setShowModal] = useState(false);
   const modalShow = () => {
