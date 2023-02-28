@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   IDefaultProviderProps,
@@ -7,16 +7,9 @@ import {
   ILoginFormValues,
   IRegisterFormValues,
   IUserContext,
-  IProductCart,
 } from './@types';
 
-import {
-  toasts,
-  toastSuccess,
-  toastError,
-  toastWarning,
-  toastAlert,
-} from '../styles/toast';
+import { toasts, toastError, toastWarning, toastAlert } from '../styles/toast';
 import { api } from '../services/api';
 
 export const UserContext = createContext({} as IUserContext);
@@ -84,13 +77,10 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       localStorage.setItem('@token', response.data.accessToken);
 
       navigate('/shop');
-      // toastSuccess();
       toasts('success', 'Cadastro Realizado com Sucesso');
     } catch (error) {
       setLoading(true);
       console.log(error);
-
-      // toastWarning();
       toasts('warning', 'Algo deu errado');
     } finally {
       setLoading(false);
@@ -105,9 +95,6 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      // setProductsList(response.data);
-      // console.log(productsList);
-
       if (filteredProducts.length === 0) {
         setProductsList(response.data);
       } else {

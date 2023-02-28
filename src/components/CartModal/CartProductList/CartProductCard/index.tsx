@@ -3,9 +3,7 @@ import { MdDelete } from 'react-icons/md';
 import { useContext } from 'react';
 import { StyledCartProductCard } from './style';
 import { CartContext } from '../../../../providers/CartContext';
-import { UserContext } from '../../../../providers/UserContext';
-import { IProductCart, IShopProduct } from '../../../../providers/@types';
-
+import { IProductCart } from '../../../../providers/@types';
 import { StyledTitle } from '../../../../styles/typography';
 
 interface ICartProductCardProps {

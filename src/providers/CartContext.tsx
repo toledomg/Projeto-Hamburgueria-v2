@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useEffect,
-  useState,
-  useContext,
-  SetStateAction,
-} from 'react';
+import { createContext, useState, SetStateAction } from 'react';
 import Swal from 'sweetalert2';
 import {
   ICartContext,
@@ -12,14 +6,11 @@ import {
   IProduct,
   IProductCart,
 } from './@types';
-import { UserContext } from './UserContext';
-import { toastAlert, toastConfirm } from '../styles/toast';
+import { toastAlert } from '../styles/toast';
 
 export const CartContext = createContext({} as ICartContext);
 
 export const CartProvider = ({ children }: IDefaultProviderProps) => {
-  const { navigate } = useContext(UserContext);
-
   const localCart = localStorage.getItem('@HamburgerKenzie');
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [cartList, setCartList] = useState<IProductCart[]>(
@@ -44,6 +35,7 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
       setCartList([...cartList, { ...currentProduct, units: 1 }]);
     } else {
       const productRemove = cartList.splice(productAdd, 1);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       productRemove[0].units! += 1;
       setCartList([...cartList, productRemove[0]]);
     }
@@ -91,9 +83,8 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
     }).then((result) => {
       if (result.isConfirmed) {
         setCartList(emptySale);
+        modalShow();
         Swal.fire('Excluído!', 'Carrinho limpo', 'success');
-      } else {
-        toastAlert('error', 'Algo deu errado!');
       }
     });
   };
