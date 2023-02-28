@@ -1,17 +1,14 @@
-import { CartProvider } from './providers/CartContext';
-import { UserProvider } from './providers/UserContext';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext, UserProvider } from './providers/UserContext';
 import { Router } from './routes';
 import { GlobalStyles } from './styles/global';
 
 function App() {
   return (
     <UserProvider>
-      <CartProvider>
-        <>
-          <GlobalStyles />
-          <Router />
-        </>
-      </CartProvider>
+      <GlobalStyles />
+      <Router />
     </UserProvider>
   );
 }

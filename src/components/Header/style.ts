@@ -33,6 +33,17 @@ export const StyledHeader = styled.header`
           }
         }
       }
+      .cart_Counter {
+        background-color: var(--primary);
+        color: var(--white);
+        font-size: 12px;
+        font-weight: var(--strong);
+        border-radius: 2px;
+        padding: 4px;
+        position: relative;
+        bottom: 10px;
+        right: 30px;
+      }
     }
 
     @media (max-width: 600px) {

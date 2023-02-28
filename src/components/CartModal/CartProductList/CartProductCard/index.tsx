@@ -1,22 +1,41 @@
 import { MdDelete } from 'react-icons/md';
 
+import { useContext } from 'react';
 import { StyledCartProductCard } from './style';
+import { CartContext } from '../../../../providers/CartContext';
+import { UserContext } from '../../../../providers/UserContext';
+import { IProductCart, IShopProduct } from '../../../../providers/@types';
+
 import { StyledTitle } from '../../../../styles/typography';
 
-const CartProductCard = () => (
-  <StyledCartProductCard>
-    <div className='imageBox'>
-      <img src='https://i.imgur.com/Vng6VzV.png' alt='Hamburguer' />
-    </div>
-    <div className='contentBox'>
-      <StyledTitle tag='h3' $fontSize='three'>
-        Hamburguer
-      </StyledTitle>
-      <button type='button' aria-label='Remover'>
-        <MdDelete size={24} />
-      </button>
-    </div>
-  </StyledCartProductCard>
-);
+interface ICartProductCardProps {
+  id: number;
+  name: string;
+  img: string;
+  product: IProductCart;
+}
+
+const CartProductCard = ({ id, product, name, img }: ICartProductCardProps) => {
+  const { removeItemToCart } = useContext(CartContext);
+  return (
+    <StyledCartProductCard>
+      <div className='imageBox'>
+        <img src={img} alt={name} />
+      </div>
+      <div className='contentBox'>
+        <StyledTitle tag='h3' $fontSize='three'>
+          {name}
+        </StyledTitle>
+        <button
+          type='button'
+          aria-label='Remover'
+          onClick={() => removeItemToCart(product)}
+        >
+          <MdDelete size={24} />
+        </button>
+      </div>
+    </StyledCartProductCard>
+  );
+};
 
 export default CartProductCard;
