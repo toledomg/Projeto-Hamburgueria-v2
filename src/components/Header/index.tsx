@@ -13,22 +13,12 @@ import { UserContext } from '../../providers/UserContext';
 
 const Header = () => {
   const { userLogout } = useContext(UserContext);
-  const { cartList } = useContext(CartContext);
-  const [showModal, setShowModal] = useState(false);
-
-  const modalShow = () => {
-    if (showModal === false) {
-      setShowModal(true);
-      console.log('sim');
-    } else {
-      setShowModal(false);
-      console.log('não');
-    }
-  };
+  const { cartList, modalShow, showModal, setShowModal } =
+    useContext(CartContext);
 
   return (
     <>
-      <CartModal />;
+      {showModal && <CartModal />}
       <StyledHeader>
         <StyledContainer containerWidth={1300}>
           <div className='flexGrid'>
@@ -40,7 +30,13 @@ const Header = () => {
             <nav className='nav' role='navigation'>
               <SearchForm />
               <div className='buttons'>
-                <button type='button'>
+                <button
+                  type='button'
+                  onClick={() => {
+                    console.log('aqui');
+                    modalShow();
+                  }}
+                >
                   <MdShoppingCart size={28} />
                   <span className='cart_Counter'>{cartList.length}</span>
                 </button>

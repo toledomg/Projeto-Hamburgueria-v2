@@ -9,10 +9,9 @@ export interface IUser {
 }
 
 export interface IRegisterFormValues {
-  name: string;
   email: string;
   password: string;
-  passwordConfirm: string;
+  name: string;
 }
 
 export interface ILoginFormValues {

@@ -13,13 +13,6 @@ export const StyledCartModalBox = styled.div`
   background: rgba(51, 51, 51, 0.5);
   z-index: 1001;
 
-  /* O modal por default estava mostrando, 
-  modifiquei aqui para poder renderizar 
-  os produtos. */
-  .hide {
-    display: none;
-  }
-
   dialog {
     animation: ${AnimationFadeIn} 0.5s;
     width: 100%;
