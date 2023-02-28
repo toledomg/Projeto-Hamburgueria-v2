@@ -4,14 +4,14 @@ import { CartContext } from '../../../providers/CartContext';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
 import { UserContext } from '../../../providers/UserContext';
-import { IProduct, IProductCart } from '../../../providers/@types';
+import { IShopProduct } from '../../../providers/@types';
 
-const ProductCard = ({ id, name, category, price, img }: IProductCart) => {
+const ProductCard = ({ product, name, category, price, img }: IShopProduct) => {
   const { addToCart } = useContext(CartContext);
   return (
     <StyledProductCard>
       <div className='imageBox'>
-        <img src={img} alt={name} />
+        <img src={img} alt={`imagem de ${name}`} />
       </div>
       <div className='content'>
         <StyledTitle tag='h3' $fontSize='three'>
@@ -24,7 +24,7 @@ const ProductCard = ({ id, name, category, price, img }: IProductCart) => {
         <StyledButton
           $buttonSize='medium'
           $buttonStyle='green'
-          // onClick={() => addToCart(id)}
+          onClick={() => addToCart(product)}
         >
           Adicionar
         </StyledButton>

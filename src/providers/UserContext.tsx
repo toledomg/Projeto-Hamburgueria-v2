@@ -7,6 +7,7 @@ import {
   ILoginFormValues,
   IRegisterFormValues,
   IUserContext,
+  IProductCart,
 } from './@types';
 
 import {

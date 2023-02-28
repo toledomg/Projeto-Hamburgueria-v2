@@ -12,13 +12,13 @@ import { UserContext } from '../../providers/UserContext';
 const RegisterPage = () => {
   const { navigate } = useContext(UserContext);
 
-  useEffect(() => {
-    const token = localStorage.getItem('@token');
-    //
-    if (token) {
-      navigate('/shop');
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('@token');
+
+  //   if (token) {
+  //     navigate('/shop');
+  //   }
+  // }, []);
   return (
     <StyledRegisterPage>
       <StyledContainer>

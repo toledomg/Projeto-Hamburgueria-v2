@@ -20,22 +20,11 @@ export interface ILoginFormValues {
 }
 
 export interface IProduct {
-  some(arg0: (product: { id: number }) => boolean): unknown;
   id: number;
   name: string;
   category: string;
   price: number;
   img: string;
-}
-
-export interface IProductCart {
-  // some(arg0: (product: { id: number }) => boolean): unknown;
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  img: string;
-  units?: number;
 }
 
 export interface IToast {
@@ -45,6 +34,24 @@ export interface IToast {
   timerProgressBar?: boolean | undefined;
   willClose: HTMLElement;
   clearInterval: number | undefined;
+}
+
+export interface IProductCart {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  units?: number;
+}
+
+export interface IShopProduct {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  img: string;
+  product: IProductCart;
 }
 
 export interface IUserContext {
@@ -74,7 +81,7 @@ export interface ICartContext {
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   modalShow: () => void;
-  addToCart: (currentId: IProductCart) => void;
+  addToCart: (currentProduct: IProductCart) => void;
   removeItemToCart: (currentId: IProductCart) => void;
   removeAllToCart: (currentId: IProductCart) => void;
 }

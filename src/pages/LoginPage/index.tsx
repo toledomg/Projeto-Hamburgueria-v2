@@ -10,14 +10,15 @@ import { UserContext } from '../../providers/UserContext';
 
 const LoginPage = () => {
   const { navigate } = useContext(UserContext);
-  useEffect(() => {
-    const token = localStorage.getItem('@token');
-    if (token) {
-      navigate('/shop');
-    } else {
-      navigate('/');
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('@token');
+  //   if (token) {
+  //     navigate('/shop');
+  //   } else {
+  //     navigate('/');
+  //   }
+  // }, []);
 
   return (
     <StyledLoginPage>

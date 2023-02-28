@@ -22,12 +22,9 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
 
   const localCart = localStorage.getItem('@HamburgerKenzie');
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [cartList2, setCartList2] = useState(
-    localCart ? JSON.parse(localCart) : []
-  );
 
   const [cartList, setCartList] = useState([] as IProductCart[]);
-  const [search, setSearch] = useState([] as IProduct[]);
+  const [search, setSearch] = useState<IProduct[]>([]);
 
   const [showModal, setShowModal] = useState(false);
   const modalShow = () => {
@@ -38,20 +35,22 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
-  useEffect(() => {
-    localStorage.setItem('@HamburgeriaV2', JSON.stringify(cartList));
-  }, [cartList]);
-
   const addToCart = (currentProduct: IProductCart) => {
-    if (cartList.some((product) => product.id === currentProduct.id)) {
-      toastAlert('success', 'Produto  adicionado ao carrinho!');
+    const productAdd = cartList.findIndex(
+      (product) => product.id === currentProduct.id
+    );
+
+    if (productAdd === -1) {
       setCartList([...cartList, { ...currentProduct, units: 1 }]);
+      console.log(cartList);
     } else {
-      toastAlert('error', 'Algo deu errado!');
+      const productRemove = cartList.splice(productAdd, 1);
+      productRemove[0].units! += 1;
+      setCartList([...cartList, productRemove[0]]);
     }
   };
 
-  const removeItemToCart = (currentId: IProductCart) => {
+  const removeItemToCart = (currentProduct: IProductCart) => {
     Swal.fire({
       title: 'Deseja excluir o item?',
       icon: 'warning',
@@ -63,17 +62,16 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
     }).then((result) => {
       if (result.isConfirmed) {
         const newCart = cartList.filter(
-          (product) => product.id !== currentId.id
+          (product) => product.id !== currentProduct.id
         );
         setCartList(newCart);
+        console.log(cartList);
         Swal.fire('Excluído!', 'Item Excluído com sucesso.', 'success');
-      } else {
-        toastAlert('error', 'Algo deu errado!');
       }
     });
   };
 
-  const removeAllToCart = (currentId: IProductCart) => {
+  const removeAllToCart = (currentProduct: IProductCart) => {
     const emptySale: SetStateAction<IProductCart[]> = [];
     Swal.fire({
       title: 'Deseja limpar todo seu carrinho?',

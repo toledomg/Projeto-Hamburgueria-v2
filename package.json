@@ -23,7 +23,7 @@
     "react-sweetalert2": "^0.5.2",
     "styled-components": "^5.3.6",
     "sweetalert2": "^11.7.2",
-    "yup": "^1.0.0"
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
