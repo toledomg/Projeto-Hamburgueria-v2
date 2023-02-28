@@ -1,5 +1,5 @@
 import { MdShoppingCart, MdLogout } from 'react-icons/md';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import SearchForm from './SearchForm';
 import { StyledHeader } from './style';
@@ -13,8 +13,7 @@ import { UserContext } from '../../providers/UserContext';
 
 const Header = () => {
   const { userLogout } = useContext(UserContext);
-  const { cartList, modalShow, showModal, setShowModal } =
-    useContext(CartContext);
+  const { cartList, modalShow, showModal } = useContext(CartContext);
 
   return (
     <>

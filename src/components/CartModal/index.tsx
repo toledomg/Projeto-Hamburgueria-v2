@@ -1,6 +1,5 @@
-import { useState, useRef, useContext } from 'react';
+import { useContext } from 'react';
 import { MdClose } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 import CartProductList from './CartProductList';
 
 import { StyledCartModalBox } from './style';
