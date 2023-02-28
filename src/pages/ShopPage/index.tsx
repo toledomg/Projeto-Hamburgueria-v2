@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StyledShopPage } from './style';
 import { CartContext } from '../../providers/CartContext';
@@ -10,7 +10,8 @@ import { StyledContainer } from '../../styles/grid';
 import { UserContext } from '../../providers/UserContext';
 
 const ShopPage = () => {
-  const { cartList } = useContext(CartContext);
+  const [show, setShow] = useState(false);
+  const { cartList, showModal, setShowModal } = useContext(CartContext);
   const { getAllProduct, productsList, autoLogin, navigate } =
     useContext(UserContext);
 
@@ -35,7 +36,6 @@ const ShopPage = () => {
 
   return (
     <StyledShopPage>
-      <CartModal />
       <Header />
       <main>
         <StyledContainer containerWidth={1300}>

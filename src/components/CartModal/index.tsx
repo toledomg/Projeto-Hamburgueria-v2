@@ -1,27 +1,23 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import CartProductList from './CartProductList';
 
 import { StyledCartModalBox } from './style';
+import { CartContext } from '../../providers/CartContext';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
 
 const CartModal = () => {
-  const [close, setClose] = useState(false);
-  const navigate = useNavigate;
-
-  const toggleMenu = () => {
-    setClose((current) => !current);
-  };
+  const { modalShow } = useContext(CartContext);
 
   return (
-    <StyledCartModalBox style={{ display: close ? 'none' : '' }}>
+    <StyledCartModalBox>
       <dialog>
         <header>
           <StyledTitle tag='h2' $fontSize='three'>
             Carrinho de compras
           </StyledTitle>
-          <button type='button' aria-label='Fechar' onClick={toggleMenu}>
+          <button type='button' aria-label='Fechar' onClick={() => modalShow()}>
             <MdClose size={21} />
           </button>
         </header>
