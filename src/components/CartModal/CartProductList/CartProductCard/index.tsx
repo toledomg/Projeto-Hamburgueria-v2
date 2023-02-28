@@ -9,13 +9,12 @@ import { IProductCart, IShopProduct } from '../../../../providers/@types';
 import { StyledTitle } from '../../../../styles/typography';
 
 interface ICartProductCardProps {
-  id: number;
   name: string;
   img: string;
   product: IProductCart;
 }
 
-const CartProductCard = ({ id, product, name, img }: ICartProductCardProps) => {
+const CartProductCard = ({ product, name, img }: ICartProductCardProps) => {
   const { removeItemToCart } = useContext(CartContext);
   return (
     <StyledCartProductCard>

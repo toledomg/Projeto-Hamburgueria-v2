@@ -20,7 +20,6 @@ export interface ILoginFormValues {
 }
 
 export interface IProduct {
-  some(arg0: (product: { id: number }) => boolean): unknown;
   id: number;
   name: string;
   category: string;
@@ -44,7 +43,6 @@ export interface IProductCart {
   price: number;
   img: string;
   units?: number;
-  product: IProduct;
 }
 
 export interface IShopProduct {

@@ -35,13 +35,6 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
-  const addToCart3 = (currentProduct: IProductCart) => {
-    if (!cartList.some((product) => product.id === currentProduct.id)) {
-      setCartList([...cartList, { ...currentProduct, units: 1 }]);
-      console.log(cartList);
-    }
-  };
-
   const addToCart = (currentProduct: IProductCart) => {
     const productAdd = cartList.findIndex(
       (product) => product.id === currentProduct.id
