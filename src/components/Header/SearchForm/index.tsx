@@ -1,16 +1,31 @@
-import { MdSearch } from 'react-icons/md';
-import { useContext, useState } from 'react';
+/* eslint-disable no-console */
+import { MdRestoreFromTrash, MdSearch } from 'react-icons/md';
+import { useState, useContext } from 'react';
 import { StyledSearchForm } from './style';
-import { CartContext } from '../../../providers/CartContext';
+import { UserContext } from '../../../providers/UserContext';
 import { StyledButton } from '../../../styles/button';
+import { CartContext } from '../../../providers/CartContext';
 
 const SearchForm = () => {
-  const { search, setSearch, cartList } = useContext(CartContext);
-  const [searchValue, setSearchValue] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const { cartList } = useContext(CartContext);
+  const { productsList, setFilteredProducts, filteredProducts } =
+    useContext(UserContext);
 
   const searchProducts = () => {
-    if (searchValue) {
-      setSearchValue();
+    if (inputValue) {
+      setFilteredProducts(
+        productsList.filter((product) => {
+          const searchCategory = product.category
+            .toLowerCase()
+            .includes(inputValue.toLowerCase());
+          const searchName = product.name
+            .toLowerCase()
+            .includes(inputValue.toLowerCase());
+
+          return searchCategory || searchName;
+        })
+      );
     }
   };
 
@@ -19,10 +34,26 @@ const SearchForm = () => {
       <input
         type='text'
         placeholder='Digitar pesquisa'
-        onChange={(event) => setSearchValue(event.target.value)}
+        onChange={(event) => {
+          // eslint-disable-next-line no-unused-expressions
+          event.target.value
+            ? setInputValue(event.target.value)
+            : setFilteredProducts([]);
+        }}
+        onKeyUp={(event) => {
+          // eslint-disable-next-line no-unused-expressions
+          event.key === 'Enter' && searchProducts();
+        }}
       />
-      <StyledButton type='submit' $buttonSize='medium' $buttonStyle='green'>
-        <MdSearch />
+      <StyledButton type='button' $buttonSize='medium' $buttonStyle='green'>
+        {filteredProducts.length !== 0 ? (
+          <MdRestoreFromTrash
+            className='trash'
+            onClick={() => setFilteredProducts([])}
+          />
+        ) : (
+          <MdSearch onClick={searchProducts} />
+        )}
       </StyledButton>
     </StyledSearchForm>
   );

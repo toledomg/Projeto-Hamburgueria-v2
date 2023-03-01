@@ -86,3 +86,6 @@ export interface ICartContext {
   soma: number;
   removeAllToCart: () => void;
 }
+export interface ISearchForm {
+  setSearchValue: (value: React.SetStateAction<never[]>) => void;
+}

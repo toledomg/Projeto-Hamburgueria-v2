@@ -9,13 +9,13 @@ import { UserContext } from '../../providers/UserContext';
 
 const ShopPage = () => {
   const { cartList } = useContext(CartContext);
-  const { getAllProduct } = useContext(UserContext);
+  const { getAllProduct, filteredProducts } = useContext(UserContext);
 
   useEffect(() => {
     (() => {
       getAllProduct();
     })();
-  }, []);
+  }, [filteredProducts]);
 
   useEffect(() => {
     localStorage.setItem('@HamburgerKenzie', JSON.stringify(cartList));

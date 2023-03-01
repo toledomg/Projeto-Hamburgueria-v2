@@ -56,6 +56,10 @@ export const StyledButtonCSS = css<IStyledButtonProps>`
         `;
     }
   }}
+
+.trash {
+    font-size: 1rem;
+  }
 `;
 
 export const StyledButton = styled.button<IStyledButtonProps>`
