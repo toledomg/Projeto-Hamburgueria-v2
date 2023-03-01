@@ -68,7 +68,6 @@ export interface IUserContext {
   setProductsList: React.Dispatch<React.SetStateAction<IProduct[]>>;
   filteredProducts: IProduct[];
   setFilteredProducts: React.Dispatch<React.SetStateAction<IProduct[]>>;
-  autoLogin: () => Promise<void>;
 }
 
 export interface ICartContext {
@@ -86,4 +85,7 @@ export interface ICartContext {
   removeItemToCart: (currentId: IProductCart) => void;
   soma: number;
   removeAllToCart: () => void;
+}
+export interface ISearchForm {
+  setSearchValue: (value: React.SetStateAction<never[]>) => void;
 }

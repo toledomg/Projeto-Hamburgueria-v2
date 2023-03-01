@@ -6,7 +6,6 @@ import {
   IProduct,
   IProductCart,
 } from './@types';
-import { toastAlert } from '../styles/toast';
 
 export const CartContext = createContext({} as ICartContext);
 
