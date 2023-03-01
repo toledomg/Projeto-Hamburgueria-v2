@@ -63,6 +63,9 @@ export const CartProvider = ({ children }: IDefaultProviderProps) => {
           (product) => product.id !== currentProduct.id
         );
         setCartList(newCart);
+        if (newCart.length === 0) {
+          modalShow();
+        }
 
         Swal.fire('Excluído!', 'Item Excluído com sucesso.', 'success');
       }
