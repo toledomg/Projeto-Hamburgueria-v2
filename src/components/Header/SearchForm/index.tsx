@@ -45,16 +45,25 @@ const SearchForm = () => {
           event.key === 'Enter' && searchProducts();
         }}
       />
-      <StyledButton type='button' $buttonSize='medium' $buttonStyle='green'>
-        {filteredProducts.length !== 0 ? (
-          <MdRestoreFromTrash
-            className='trash'
-            onClick={() => setFilteredProducts([])}
-          />
-        ) : (
-          <MdSearch onClick={searchProducts} />
-        )}
-      </StyledButton>
+      {filteredProducts.length !== 0 ? (
+        <StyledButton
+          type='button'
+          $buttonSize='medium'
+          $buttonStyle='green'
+          onClick={() => setFilteredProducts([])}
+        >
+          <MdRestoreFromTrash className='trash' />
+        </StyledButton>
+      ) : (
+        <StyledButton
+          type='button'
+          $buttonSize='medium'
+          $buttonStyle='green'
+          onClick={searchProducts}
+        >
+          <MdSearch />
+        </StyledButton>
+      )}
     </StyledSearchForm>
   );
 };
