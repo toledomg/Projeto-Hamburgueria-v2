@@ -7,6 +7,19 @@
 - [URL Repo GIT](https://github.com/Kenzie-Academy-Brasil-Developers/kenzie-burguer-v2-template-toledomg)
 
 #
+## **Endpoints**
+
+A API tem um total de 3 endpoints,  podendo cadastrar seu usuario, realizar login e busca de produtos. <br/>
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Hamburgueria%20V2&uri=https%3A%2F%2Fgithub.com%2FKenzie-Academy-Brasil-Developers%2Fkenzie-burguer-v2-template-toledomg%2Fblob%2Fmain%2Fapi_Insomnia.json)
+
+<blockquote> Para importar o JSON no Insomnia é só clicar no botão "Run in Insomnia". Depois é só seguir os passos que ele irá importar todos os endpoints em seu insomnia.
+</blockquote>
+<br>
+
+A url base da API é https://hamburgueria-kenzie-v2.herokuapp.com
+
+#
 
 # Start the project by installing the dependencies
 
